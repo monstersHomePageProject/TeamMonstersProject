@@ -10,7 +10,7 @@
 <pre>
 	<form action="action.jsp">
 		ID : <input type="text" name="id">
-		Password : <input name="pwd">
+		Pwd : <input name="pwd">
 		<input type="submit" value="제출">
 	</form>
 </pre>	
