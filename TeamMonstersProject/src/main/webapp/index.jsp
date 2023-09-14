@@ -9,7 +9,7 @@
 <body>
 <pre>
 	<form action="action.jsp">
-		ID : <input type="text" name="id">
+		Id : <input type="text" name="id">
 		Pwd : <input name="pwd">
 		<input type="submit" value="제출">
 	</form>
