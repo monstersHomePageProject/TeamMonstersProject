@@ -83,7 +83,7 @@ public class MemberDAO {
 		// sql문 작성
 		String sql = "INSERT INTO TBL_MEMBER\r\n"
 				+ "    (mem_id, mem_role, mem_pwd, mem_name, mem_email, mem_phone)\r\n"
-				+ "VALUES (?, ?, ?, ?, ?, )";
+				+ "VALUES (?, ?, ?, ?, ?, ?)";
 		//Statement 생성
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		//sql ? 값에 MemberDTO 객체의 필드 값을 집어넣음.
