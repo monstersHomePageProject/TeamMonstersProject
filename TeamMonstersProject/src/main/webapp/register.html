@@ -1,67 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-    table, td, th {
-    margin-left:auto; 
-    margin-right:auto;
-};
-    </style>
 <meta charset="UTF-8">
-<title>회원가입 화면</title>
-<script type="text/javascript">
-    function checkInput(form) {
-			//alert(form.name.value);
-			var result = true;
-            var msg = "";
-			var check = /[^0-9-]/;//숫자와-를 뺀 모든 문자
-			if(!form.name.value) {
-				result = false;
-                msg = "이름을 입력해주세요.";}
-			if(!form.id.value) {
-				result = false;
-				msg = "ID를 입력해주세요.";}
-			if(!form.pwd.value) {
-				result = false;
-				msg = "비밀번호를 입력해주세요.";}
-			//숫자가 아니면(a~z, A~Z, ㄱ~힣 안됨) : regular experssion
-			//RegExp 클래스가 있음
-			if(!form.phone.value) {
-				result = false;
-				msg = "휴대폰 번호를 입력해주세요.";}
-			else{
-				if(check.test(form.phone.value)){
-				result = false;
-				msg = "휴대폰 번호는 숫자만 입력해주세요.";}}
-			if(!form.email.value){
-				result = false;
-				msg = "Email을 입력해주세요.";}
-			if(result==false){
-                alert(msg);
-            }
-			return result; //form - onsubmit= return true : form.submit()과 동일
-		}
-</script>
+<title>Insert title here</title>
 </head>
 <body>
-	<form name="form1" action="registerAction.jsp" onsubmit="return checkInput(form1);">
-        <center><h1> 회원 가입 </h1></center>
-        <br><br>
-		<table>
-			<tr><td>* 이름 </td><td><input name="name"></td></tr>
-			<tr><td>* ID </td><td><input name="id"><button>중복체크</button></td></tr>
-			<tr><td>* PWD </td><td><input name="pwd" type="password"></td></tr>
-			<tr><td>* 이메일 </td><td><input name="email" type="email" placeholder="aa@bb.cc"></td></tr>
-			<tr><td>* 전화번호 </td><td><input name="phone" placeholder="숫자만 입력"></td></tr>
-			<tr><td>* 구분 </td><td><select name="role">
-                    <option value = "guest">1. 팬</option>
-                    <option value = "bplayer">2. 선수</option>
-                    <option value = "admin">3. 관리자</option>
-            </td></tr>
-		</table>
-        <br><br>
-			<center><tr><td><button type = "submit">가입하기</button></td></tr></center><br>
-			<center><tr><td><a href="login.html">이미 계정이 있으신가요?</a></td></tr></center>
-	</form>
+
 </body>
 </html>
