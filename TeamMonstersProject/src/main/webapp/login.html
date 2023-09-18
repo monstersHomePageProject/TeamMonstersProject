@@ -24,10 +24,11 @@
 
 </head>
 <body>
-	<form class="loginForm" name="login" action="loginAction.jsp" onsubmit="checkLogin(login)">
+	<!-- method는 차후에 "post"로 변경하기!!!! -->
+	<form method="get" class="loginForm" name="login" action="loginAction.jsp" onsubmit="checkLogin(login)">
         <div class="inputWrapper">
 		    <input type="text" name = "userId" maxlength="20" placeholder="아이디" required>
-            <input type="text" name = "userPwd" maxlength="20" placeholder="비밀번호" required>
+            <input type="password" name = "userPwd" maxlength="20" placeholder="비밀번호" required>
         </div>    
         <input class="loginBtn" type="submit" value="로그인">
 	</form>
