@@ -36,7 +36,9 @@
 			if(!form.email.value){
 				result = false;
 				msg = "Email을 입력해주세요.";}
-			alert(msg);
+			if(result==false){
+                alert(msg);
+            }
 			return result; //form - onsubmit= return true : form.submit()과 동일
 		}
 </script>
