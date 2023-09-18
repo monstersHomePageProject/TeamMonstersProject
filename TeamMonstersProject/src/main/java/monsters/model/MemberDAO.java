@@ -97,10 +97,42 @@ public class MemberDAO {
 		//result에 쿼리 실행 값을 할당
 		result = pstmt.executeUpdate();
 		
-		
 		pstmt.close(); // Statement close
 		pool.releaseConnection(conn); // 커넥션 반납
 		return result;
+	}
+	
+	//id 중복체크 기능
+	public int regDupCheck(String id) throws SQLException {
+		//result가 -1이면 에러 발생
+		result = -1;
+		// 커넥션 생성 (pool로부터 connection을 가져옴.
+		Connection conn = pool.getConnection();
+		// sql문 작성
+		String sql = "SELECT * FROM TBL_MEMBER WHERE mem_id = ?";
+		//Statement 생성
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		//sql ? 값에 MemberDTO 객체의 id 집어넣음.
+		pstmt.setString(1, id);
+		
+		//ResultSet에 쿼리 실행 값을 할당
+		ResultSet rs = pstmt.executeQuery();
+		
+		//rs.next()를 통해 sql을 통한 값이 저장되었는지 확인
+		if(rs.next()) {
+			//result가 0이면 사용 불가능한 ID
+			result = 0;
+		}else { //result가 1이면 사용 가능한 ID
+			result = 1;
+		}
+		System.out.println("아이디 중복체크결과 : "+result);
+		
+		rs.close(); // ResultSet close
+		pstmt.close(); // Statement close
+		pool.releaseConnection(conn); // 커넥션 반납
+		
+		return result;
+		
 	}
 	
 	

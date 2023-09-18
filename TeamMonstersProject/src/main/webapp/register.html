@@ -41,6 +41,9 @@
             }
 			return result; //form - onsubmit= return true : form.submit()과 동일
 		}
+	function winopen(){
+		window.open("regDupCheck.jsp?mem_id="+document.form1.mem_id.value,"","width=500, height=300");
+	}
 </script>
 </head>
 <body>
@@ -49,7 +52,7 @@
         <br><br>
 		<table>
 			<tr><td>* 이름 </td><td><input name="mem_name"></td></tr>
-			<tr><td>* ID </td><td><input name="mem_id" maxlength="20"><button>중복체크</button></td></tr>
+			<tr><td>* ID </td><td><input name="mem_id" maxlength="20"><button onclick="winopen()">중복체크</button></td></tr>
 			<tr><td>* PWD </td><td><input name="mem_pwd" maxlength="20" type="password"></td></tr>
 			<tr><td>* 이메일 </td><td><input name="mem_email" type="email" placeholder="aa@bb.cc"></td></tr>
 			<tr><td>* 전화번호 </td><td><input name="mem_phone" placeholder="숫자만 입력"></td></tr>
