@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="monsters.model.*" %>
 <jsp:useBean id="service" class="monsters.model.MemberDAO" scope="request"/>
-<jsp:useBean id="member" class="monsters.model.MemberDTO" scope="request"/>
+<jsp:useBean id="member" class="monsters.model.MemberDTO" scope="session"/>
 <jsp:setProperty property="mem_id" name="member"/>
 <jsp:setProperty property="mem_pwd" name="member"/>
 <jsp:setProperty property="user" name="service" value="<%=member %>"/>
