@@ -15,7 +15,7 @@ public class MemberDAO {
 	private String DBPwd = "hr";
 	private static final String jdbcclass = "oracle.jdbc.OracleDriver";   
 	private ConnectionPool pool;
-	private ResultSet rs;
+	private int result;
 	private MemberDTO user; // 웹 브라우저로부터 받은 값을 가지고 만들어진 MemberDTO의 객체를 할당.
 	
 	//생성자
@@ -41,7 +41,7 @@ public class MemberDAO {
 		this.user = user;
 	}
 	
-	//로그인 기능
+	//로그인 기능(select)
 	public int login() throws SQLException {
 		// 커넥션 생성 (pool로부터 connection을 가져옴.
 		Connection conn = pool.getConnection();
@@ -53,7 +53,7 @@ public class MemberDAO {
 		pstmt.setString(1, user.getMem_id());
 		
 		//ResultSet에 쿼리 실행 값을 할당
-		rs = pstmt.executeQuery();
+		ResultSet rs = pstmt.executeQuery();
 		
 		//데이터 베이스 오류 시, -2 반환
 		int result = -2; 
@@ -74,6 +74,33 @@ public class MemberDAO {
 		pool.releaseConnection(conn); // 커넥션 반납
 		return result;
 		
+	}
+	
+	//회원가입 기능(insert)
+	public int register() throws SQLException {
+		// 커넥션 생성 (pool로부터 connection을 가져옴.
+		Connection conn = pool.getConnection();
+		// sql문 작성
+		String sql = "INSERT INTO TBL_MEMBER\r\n"
+				+ "    (mem_id, mem_role, mem_pwd, mem_name, mem_email, mem_phone)\r\n"
+				+ "VALUES (?, ?, ?, ?, ?, )";
+		//Statement 생성
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		//sql ? 값에 MemberDTO 객체의 필드 값을 집어넣음.
+		pstmt.setString(1, user.getMem_id());
+		pstmt.setString(2, user.getMem_role());
+		pstmt.setString(3, user.getMem_pwd());
+		pstmt.setString(4, user.getMem_name());
+		pstmt.setString(5, user.getMem_email());
+		pstmt.setString(6, user.getMem_phone());
+		
+		//result에 쿼리 실행 값을 할당
+		result = pstmt.executeUpdate();
+		
+		
+		pstmt.close(); // Statement close
+		pool.releaseConnection(conn); // 커넥션 반납
+		return result;
 	}
 	
 	
