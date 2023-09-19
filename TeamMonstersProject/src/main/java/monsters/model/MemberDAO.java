@@ -39,6 +39,7 @@ public class MemberDAO {
 	public MemberDTO getUser() {
 		return user;
 	}
+	
 	//MemberDTO 객체를 생성하는 set메서드
 	public void setUser(MemberDTO user) {
 		this.user = user;
@@ -132,6 +133,7 @@ public class MemberDAO {
 		}else { //result가 1이면 사용 가능한 ID
 			result = 1;
 		}
+		
 		System.out.println("아이디 중복체크결과 : "+result);
 			
 		rs.close(); // ResultSet close
