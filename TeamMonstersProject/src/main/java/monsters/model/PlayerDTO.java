@@ -28,7 +28,38 @@ public class PlayerDTO {
     // like 
     private int pl_like;
 	
-    //생성자
+    /**
+	 * @param pl_id
+	 * @param pl_name
+	 * @param pl_position
+	 * @param pl_birth
+	 * @param pl_backNo
+	 * @param pl_physical
+	 * @param pl_PnH
+	 * @param pl_subject
+	 * @param pl_contents
+	 * @param regdate
+	 * @param pl_imgName
+	 * @param pl_like
+	 */
+	public PlayerDTO(int pl_id, String pl_name, int pl_position, Date pl_birth, int pl_backNo, String pl_physical,
+			int pl_PnH, String pl_subject, String pl_contents, Date regdate, String pl_imgName, int pl_like) {
+		super();
+		this.pl_id = pl_id;
+		this.pl_name = pl_name;
+		this.pl_position = pl_position;
+		this.pl_birth = pl_birth;
+		this.pl_backNo = pl_backNo;
+		this.pl_physical = pl_physical;
+		this.pl_PnH = pl_PnH;
+		this.pl_subject = pl_subject;
+		this.pl_contents = pl_contents;
+		this.regdate = regdate;
+		this.pl_imgName = pl_imgName;
+		this.pl_like = pl_like;
+	}
+
+	//생성자
     public PlayerDTO() {
 		super();
 	}
