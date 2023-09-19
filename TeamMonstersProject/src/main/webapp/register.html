@@ -15,25 +15,25 @@
 			var result = true;
             var msg = "";
 			var check = /[^0-9-]/;//숫자와-를 뺀 모든 문자
-			if(!form.name.value) {
+			if(!form.mem_name.value) {
 				result = false;
                 msg = "이름을 입력해주세요.";}
-			if(!form.id.value) {
+			if(!form.mem_id.value) {
 				result = false;
 				msg = "ID를 입력해주세요.";}
-			if(!form.pwd.value) {
+			if(!form.mem_pwd.value) {
 				result = false;
 				msg = "비밀번호를 입력해주세요.";}
 			//숫자가 아니면(a~z, A~Z, ㄱ~힣 안됨) : regular experssion
 			//RegExp 클래스가 있음
-			if(!form.phone.value) {
+			if(!form.mem_phone.value) {
 				result = false;
 				msg = "휴대폰 번호를 입력해주세요.";}
 			else{
-				if(check.test(form.phone.value)){
+				if(check.test(form.mem_phone.value)){
 				result = false;
 				msg = "휴대폰 번호는 숫자만 입력해주세요.";}}
-			if(!form.email.value){
+			if(!form.mem_email.value){
 				result = false;
 				msg = "Email을 입력해주세요.";}
 			if(result==false){
@@ -41,6 +41,9 @@
             }
 			return result; //form - onsubmit= return true : form.submit()과 동일
 		}
+	function winopen(){
+		window.open("regDupCheck.jsp?mem_id="+document.form1.mem_id.value,"","width=500, height=300");
+	}
 </script>
 </head>
 <body>
@@ -48,12 +51,12 @@
         <center><h1> 회원 가입 </h1></center>
         <br><br>
 		<table>
-			<tr><td>* 이름 </td><td><input name="name"></td></tr>
-			<tr><td>* ID </td><td><input name="id" maxlength="20"><button>중복체크</button></td></tr>
-			<tr><td>* PWD </td><td><input name="pwd" maxlength="20" type="password"></td></tr>
-			<tr><td>* 이메일 </td><td><input name="email" type="email" placeholder="aa@bb.cc"></td></tr>
-			<tr><td>* 전화번호 </td><td><input name="phone" placeholder="숫자만 입력"></td></tr>
-			<tr><td>* 구분 </td><td><select name="role">
+			<tr><td>* 이름 </td><td><input name="mem_name"></td></tr>
+			<tr><td>* ID </td><td><input name="mem_id" maxlength="20"><button onclick="winopen()">중복체크</button></td></tr>
+			<tr><td>* PWD </td><td><input name="mem_pwd" maxlength="20" type="password"></td></tr>
+			<tr><td>* 이메일 </td><td><input name="mem_email" type="email" placeholder="aa@bb.cc"></td></tr>
+			<tr><td>* 전화번호 </td><td><input name="mem_phone" placeholder="숫자만 입력"></td></tr>
+			<tr><td>* 구분 </td><td><select name="mem_role">
                     <option value = "guest">1. 팬</option>
                     <option value = "bplayer">2. 선수</option>
                     <option value = "admin">3. 관리자</option>
