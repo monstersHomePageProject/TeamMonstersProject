@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="monsters.model.*" %>
-<jsp:useBean id="service" class="monsters.model.MemberDAO" scope="request"/>
+<jsp:useBean id="service" class="monsters.model.MemberDAO" scope="session"/>
 <jsp:useBean id="member" class="monsters.model.MemberDTO" scope="session"/>
 <jsp:setProperty property="mem_id" name="member"/>
 <jsp:setProperty property="mem_pwd" name="member"/>
@@ -15,7 +15,7 @@
 <body>
 	<%
 		int result = service.login();
-		request.setAttribute("loginResult", result);
+		session.setAttribute("loginResult", result);
 	%>
 <jsp:forward page="loginView.jsp"/>
 </body>

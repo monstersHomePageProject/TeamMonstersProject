@@ -36,6 +36,9 @@ public class MemberDAO {
 		}
 	}
 	
+	public MemberDTO getUser() {
+		return user;
+	}
 	//MemberDTO 객체를 생성하는 set메서드
 	public void setUser(MemberDTO user) {
 		this.user = user;
@@ -61,6 +64,9 @@ public class MemberDAO {
 		if(rs.next()) {
 			//아이디 비밀번호가 일치하면 1 반환
 			if(rs.getString("mem_pwd").equals(user.getMem_pwd())) {
+				//select문으로 가져온 레코드로 MemberDTO 객체 생성
+				user = new MemberDTO(rs.getString("mem_id"), rs.getString("mem_role"), rs.getString("mem_pwd"), rs.getString("mem_name"),
+									rs.getString("mem_email"), rs.getString("mem_phone"));  
 				result = 1;
 			}else { // 비밀번호가 다르면 0 반환
 				result = 0;
@@ -103,7 +109,38 @@ public class MemberDAO {
 		return result;
 	}
 	
-	
+	//id 중복체크 기능
+	public int regDupCheck(String id) throws SQLException {
+		//result가 -1이면 에러 발생
+		result = -1;
+		// 커넥션 생성 (pool로부터 connection을 가져옴.
+		Connection conn = pool.getConnection();
+		// sql문 작성
+		String sql = "SELECT * FROM TBL_MEMBER WHERE mem_id = ?";
+		//Statement 생성
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		//sql ? 값에 MemberDTO 객체의 id 집어넣음.
+		pstmt.setString(1, id);
+			
+		//ResultSet에 쿼리 실행 값을 할당
+		ResultSet rs = pstmt.executeQuery();
+			
+		//rs.next()를 통해 sql을 통한 값이 저장되었는지 확인
+		if(rs.next()) {
+			//result가 0이면 사용 불가능한 ID
+			result = 0;
+		}else { //result가 1이면 사용 가능한 ID
+			result = 1;
+		}
+		System.out.println("아이디 중복체크결과 : "+result);
+			
+		rs.close(); // ResultSet close
+		pstmt.close(); // Statement close
+		pool.releaseConnection(conn); // 커넥션 반납
+			
+		return result;
+			
+	}
 	
 	
 	
